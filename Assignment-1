@@ -1,0 +1,28 @@
+def calculate_grade_level(text):
+    # Counting letters, words, and sentences
+    letters = sum(c.isalpha() for c in text)
+    words = len(text.split())
+    sentences = text.count('.') + text.count('!') + text.count('?')
+
+    # Calculating average letters per 100 words and average sentences per 100 words
+    L = (letters / words) * 100
+    S = (sentences / words) * 100
+
+    # Calculating Coleman-Liau index
+    index = 0.0588 * L - 0.296 * S - 15.8
+
+    # Rounding the index to the nearest integer to get the grade level
+    grade_level = round(index)
+
+    return grade_level
+
+# Example text
+text = "Congratulations! Today is your day. You're off to Great Places! You're off and away!"
+
+# Calculating grade level
+grade = calculate_grade_level(text)
+
+#Input Text:- "Congratulations! Today is your day. You're off to Great Places! You're off and away!"
+print("Text:", text)
+#Grade Output:- 3
+print("Grade:", grade)
